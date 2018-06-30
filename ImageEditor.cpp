@@ -158,7 +158,7 @@ public:
         {
             for (int x = 0; x < m_width; ++x)
             {
-		        pixelPosition = y * m_width * m_depth + x * m_depth;
+                pixelPosition = y * m_width * m_depth + x * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -191,9 +191,9 @@ public:
         int rx, gx, bx, ax, pixelPosition;
         for (int y_id = y; y_id < (y + height); ++y_id)
         {
-	        for (int x_id = x; x_id < (x + width); ++x_id)
-	        {
-	            pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
+            for (int x_id = x; x_id < (x + width); ++x_id)
+            {
+                pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -223,7 +223,7 @@ public:
         {
             for (int y_id = 0; y_id < m_height; ++y_id)
             {
-	            pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
+                pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -253,18 +253,18 @@ public:
             return false;
         }
 
-	int arr_id;
-	for (arr_id = 3; arr_id < m_width * m_height * m_depth; arr_id += m_depth)
-	{
-		m_image_data[arr_id] = alpha;
-	}
+        int arr_id;
+        for (arr_id = 3; arr_id < m_width * m_height * m_depth; arr_id += m_depth)
+        {
+            m_image_data[arr_id] = alpha;
+        }
 
         return true;
     }
 
-	/**
-	 * predicting verticalLength pixels and set it to average value
-	 */
+    /**
+     * predicting verticalLength pixels and set it to average value
+     */
     bool verticalBlur(int verticalLength)
     {
         if (0 >= verticalLength)
@@ -311,7 +311,7 @@ public:
                     {
                         break;
                     }
-		            pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
+                    pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
                     average_red += m_source_image[pixelPosition + 0];
                     average_green += m_source_image[pixelPosition + 1];
                     average_blue += m_source_image[pixelPosition + 2];
@@ -335,7 +335,7 @@ public:
                     {
                         break;
                     }
-		            pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
+                    pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
                     m_image_data[pixelPosition + 0] = average_red;
                     m_image_data[pixelPosition + 1] = average_green;
                     m_image_data[pixelPosition + 2] = average_blue;
@@ -352,9 +352,9 @@ public:
         return true;
     }
 
-	/**
-	 * predicting verticahorizontalLength pixels and set it to average value
-	 */
+    /**
+     * predicting verticahorizontalLength pixels and set it to average value
+     */
     bool horizontalBlur(int horizontalLength)
     {
         if (0 >= horizontalLength)
@@ -401,7 +401,7 @@ public:
                     {
                         break;
                     }
-		            pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
+                    pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
                     average_red += m_source_image[pixelPosition + 0];
                     average_green += m_source_image[pixelPosition + 1];
                     average_blue += m_source_image[pixelPosition + 2];
@@ -426,7 +426,7 @@ public:
                     {
                         break;
                     }
-		            pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
+                    pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
                     m_image_data[pixelPosition + 0] = average_red;
                     m_image_data[pixelPosition + 1] = average_green;
                     m_image_data[pixelPosition + 2] = average_blue;
@@ -444,7 +444,7 @@ public:
     }
 
     /** 
-	 * apply gaussian blur function on it
+     * apply gaussian blur function on it
      * radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
      */
     bool gaussianBlur(int radiusLength, double integrity)
@@ -528,7 +528,7 @@ public:
                 int cx, cy, tx, ty;
                 double vRed, vGreen, vBlue, vAlpha;
                 double coreVal, value;
-				int pixelPosition = 0;
+                int pixelPosition = 0;
                 value = 0.8f;
                 coreVal = 1.0f;
                 vRed = 0.0f;
@@ -550,7 +550,7 @@ public:
                             continue;
                         }
                         coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
-		                pixelPosition = (ty * m_width + tx) * m_depth;
+                        pixelPosition = (ty * m_width + tx) * m_depth;
                         vRed += coreVal * m_source_image[pixelPosition + 0];
                         vGreen += coreVal * m_source_image[pixelPosition + 1];
                         vBlue += coreVal * m_source_image[pixelPosition + 2];
@@ -561,7 +561,7 @@ public:
                     }
                 }
 
-	        pixelPosition = (y * m_width + x) * m_depth;
+                pixelPosition = (y * m_width + x) * m_depth;
                 m_image_data[pixelPosition + 0] = (unsigned char) vRed;
                 m_image_data[pixelPosition + 1] = (unsigned char) vGreen;
                 m_image_data[pixelPosition + 2] = (unsigned char) vBlue;
@@ -577,517 +577,517 @@ public:
         return true;
     }
 
-	/** 
-	* apply gaussian blur function on Red channel
-	*
-	* radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
-	*/
-	bool gaussianRedBlur(int radiusLength, double integrity)
-	{
-		if (0 >= radiusLength)
-		{
-			return false;
-		}
+    /** 
+    * apply gaussian blur function on Red channel
+    *
+    * radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
+    */
+    bool gaussianRedBlur(int radiusLength, double integrity)
+    {
+        if (0 >= radiusLength)
+        {
+            return false;
+        }
 
-		if (0.0f >= integrity)
-		{
-			return false;
-		}
+        if (0.0f >= integrity)
+        {
+            return false;
+        }
 
-		if (!this->isInitized())
-		{
-			return false;
-		}
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
-		if (NULL == m_source_image)
-		{
-			return false;
-		}
+        unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
+        if (NULL == m_source_image)
+        {
+            return false;
+        }
 
-		if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
-		if (NULL == m_core_matrix)
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
+        if (NULL == m_core_matrix)
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		int x, y;
-		double radius, value;
-		double pi = 3.1415926f;
+        int x, y;
+        double radius, value;
+        double pi = 3.1415926f;
 
-		m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
-		for (y = 0; y <= radiusLength; ++y)
-		{
-			for (x = 0; x <= radiusLength; ++x)
-			{
-				radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
-				value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
-				m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
-				m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				if (y != radiusLength)
-				{
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				}
-			}
-		}
+        m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
+        for (y = 0; y <= radiusLength; ++y)
+        {
+            for (x = 0; x <= radiusLength; ++x)
+            {
+                radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
+                value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
+                m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
+                m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                if (y != radiusLength)
+                {
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                }
+            }
+        }
 
-		double m_core_sum = 0.0f;
-		for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
-		{
-			m_core_sum += m_core_matrix[id];
-		}
+        double m_core_sum = 0.0f;
+        for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
+        {
+            m_core_sum += m_core_matrix[id];
+        }
 
-		// Normalize Matrix
-		for (int y = 0; y < (2 * radiusLength + 1); ++y)
-		{
-			for (int x = 0; x < (2 * radiusLength + 1); ++x)
-			{
-				m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
-			}
-		}
+        // Normalize Matrix
+        for (int y = 0; y < (2 * radiusLength + 1); ++y)
+        {
+            for (int x = 0; x < (2 * radiusLength + 1); ++x)
+            {
+                m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
+            }
+        }
 
-		// Act on convolution calculate use core
-		int average_red, average_green, average_blue, average_alpha;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				int cx, cy, tx, ty;
-				double vRed, vGreen, vBlue, vAlpha;
-				double coreVal, value;
-				int pixelPosition = 0;
-				value = 0.8f;
-				coreVal = 1.0f;
-				vRed = 0.0f;
-				vGreen = 0.0f;
-				vBlue = 0.0f;
-				vAlpha = 0.0f;
-				for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
-				{
-					for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
-					{
-						tx = x + cx - radiusLength;
-						ty = y + cy - radiusLength;
-						if ((0 > tx) || (0 > ty))
-						{
-							continue;
-						}
-						if ((m_width <= tx) || (m_height <= ty))
-						{
-							continue;
-						}
-						coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
-						pixelPosition = (ty * m_width + tx) * m_depth;
-						vRed += coreVal * m_source_image[pixelPosition + 0];
-					}
-				}
+        // Act on convolution calculate use core
+        int average_red, average_green, average_blue, average_alpha;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                int cx, cy, tx, ty;
+                double vRed, vGreen, vBlue, vAlpha;
+                double coreVal, value;
+                int pixelPosition = 0;
+                value = 0.8f;
+                coreVal = 1.0f;
+                vRed = 0.0f;
+                vGreen = 0.0f;
+                vBlue = 0.0f;
+                vAlpha = 0.0f;
+                for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
+                {
+                    for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
+                    {
+                        tx = x + cx - radiusLength;
+                        ty = y + cy - radiusLength;
+                        if ((0 > tx) || (0 > ty))
+                        {
+                            continue;
+                        }
+                        if ((m_width <= tx) || (m_height <= ty))
+                        {
+                            continue;
+                        }
+                        coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
+                        pixelPosition = (ty * m_width + tx) * m_depth;
+                        vRed += coreVal * m_source_image[pixelPosition + 0];
+                    }
+                }
 
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 0] = (unsigned char)vRed;
-			}
-		}
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 0] = (unsigned char)vRed;
+            }
+        }
 
-		STBI_FREE(m_core_matrix);
-		STBI_FREE(m_source_image);
-		return true;
-	}
+        STBI_FREE(m_core_matrix);
+        STBI_FREE(m_source_image);
+        return true;
+    }
 
-	/**
-	* apply gaussian blur function on Green channel
-	*
-	* radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
-	*/
-	bool gaussianGreenBlur(int radiusLength, double integrity)
-	{
-		if (0 >= radiusLength)
-		{
-			return false;
-		}
+    /**
+    * apply gaussian blur function on Green channel
+    *
+    * radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
+    */
+    bool gaussianGreenBlur(int radiusLength, double integrity)
+    {
+        if (0 >= radiusLength)
+        {
+            return false;
+        }
 
-		if (0.0f >= integrity)
-		{
-			return false;
-		}
+        if (0.0f >= integrity)
+        {
+            return false;
+        }
 
-		if (!this->isInitized())
-		{
-			return false;
-		}
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
-		if (NULL == m_source_image)
-		{
-			return false;
-		}
+        unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
+        if (NULL == m_source_image)
+        {
+            return false;
+        }
 
-		if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
-		if (NULL == m_core_matrix)
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
+        if (NULL == m_core_matrix)
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		int x, y;
-		double radius, value;
-		double pi = 3.1415926f;
+        int x, y;
+        double radius, value;
+        double pi = 3.1415926f;
 
-		m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
-		for (y = 0; y <= radiusLength; ++y)
-		{
-			for (x = 0; x <= radiusLength; ++x)
-			{
-				radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
-				value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
-				m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
-				m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				if (y != radiusLength)
-				{
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				}
-			}
-		}
+        m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
+        for (y = 0; y <= radiusLength; ++y)
+        {
+            for (x = 0; x <= radiusLength; ++x)
+            {
+                radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
+                value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
+                m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
+                m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                if (y != radiusLength)
+                {
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                }
+            }
+        }
 
-		double m_core_sum = 0.0f;
-		for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
-		{
-			m_core_sum += m_core_matrix[id];
-		}
+        double m_core_sum = 0.0f;
+        for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
+        {
+            m_core_sum += m_core_matrix[id];
+        }
 
-		// Normalize Matrix
-		for (int y = 0; y < (2 * radiusLength + 1); ++y)
-		{
-			for (int x = 0; x < (2 * radiusLength + 1); ++x)
-			{
-				m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
-			}
-		}
+        // Normalize Matrix
+        for (int y = 0; y < (2 * radiusLength + 1); ++y)
+        {
+            for (int x = 0; x < (2 * radiusLength + 1); ++x)
+            {
+                m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
+            }
+        }
 
-		// Act on convolution calculate use core
-		int average_red, average_green, average_blue, average_alpha;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				int cx, cy, tx, ty;
-				double vRed, vGreen, vBlue, vAlpha;
-				double coreVal, value;
-				int pixelPosition = 0;
-				value = 0.8f;
-				coreVal = 1.0f;
-				vRed = 0.0f;
-				vGreen = 0.0f;
-				vBlue = 0.0f;
-				vAlpha = 0.0f;
-				for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
-				{
-					for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
-					{
-						tx = x + cx - radiusLength;
-						ty = y + cy - radiusLength;
-						if ((0 > tx) || (0 > ty))
-						{
-							continue;
-						}
-						if ((m_width <= tx) || (m_height <= ty))
-						{
-							continue;
-						}
-						coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
-						pixelPosition = (ty * m_width + tx) * m_depth;
-						vGreen += coreVal * m_source_image[pixelPosition + 1];
-					}
-				}
+        // Act on convolution calculate use core
+        int average_red, average_green, average_blue, average_alpha;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                int cx, cy, tx, ty;
+                double vRed, vGreen, vBlue, vAlpha;
+                double coreVal, value;
+                int pixelPosition = 0;
+                value = 0.8f;
+                coreVal = 1.0f;
+                vRed = 0.0f;
+                vGreen = 0.0f;
+                vBlue = 0.0f;
+                vAlpha = 0.0f;
+                for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
+                {
+                    for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
+                    {
+                        tx = x + cx - radiusLength;
+                        ty = y + cy - radiusLength;
+                        if ((0 > tx) || (0 > ty))
+                        {
+                            continue;
+                        }
+                        if ((m_width <= tx) || (m_height <= ty))
+                        {
+                            continue;
+                        }
+                        coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
+                        pixelPosition = (ty * m_width + tx) * m_depth;
+                        vGreen += coreVal * m_source_image[pixelPosition + 1];
+                    }
+                }
 
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 1] = (unsigned char)vGreen;
-			}
-		}
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 1] = (unsigned char)vGreen;
+            }
+        }
 
-		STBI_FREE(m_core_matrix);
-		STBI_FREE(m_source_image);
-		return true;
-	}
+        STBI_FREE(m_core_matrix);
+        STBI_FREE(m_source_image);
+        return true;
+    }
 
-	/** 
-	* apply gaussian blur function on Blue channel
-	* radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
-	*/
-	bool gaussianBlueBlur(int radiusLength, double integrity)
-	{
-		if (0 >= radiusLength)
-		{
-			return false;
-		}
+    /** 
+    * apply gaussian blur function on Blue channel
+    * radiusLength will cause a (2 * radiusLength + 1) * (2 * radiusLength + 1) Matrix for gaussian calculate
+    */
+    bool gaussianBlueBlur(int radiusLength, double integrity)
+    {
+        if (0 >= radiusLength)
+        {
+            return false;
+        }
 
-		if (0.0f >= integrity)
-		{
-			return false;
-		}
+        if (0.0f >= integrity)
+        {
+            return false;
+        }
 
-		if (!this->isInitized())
-		{
-			return false;
-		}
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
-		if (NULL == m_source_image)
-		{
-			return false;
-		}
+        unsigned char *m_source_image = (unsigned char *)STBI_MALLOC(this->getMemorySize());
+        if (NULL == m_source_image)
+        {
+            return false;
+        }
 
-		if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        if (NULL == memcpy(m_source_image, m_image_data, this->getMemorySize()))
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
-		if (NULL == m_core_matrix)
-		{
-			STBI_FREE(m_source_image);
-			return false;
-		}
+        double *m_core_matrix = (double *)STBI_MALLOC((2 * radiusLength + 1) * (2 * radiusLength + 1) * sizeof(double));
+        if (NULL == m_core_matrix)
+        {
+            STBI_FREE(m_source_image);
+            return false;
+        }
 
-		int x, y;
-		double radius, value;
-		double pi = 3.1415926f;
-		m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
-		for (y = 0; y <= radiusLength; ++y)
-		{
-			for (x = 0; x <= radiusLength; ++x)
-			{
-				radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
-				value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
-				m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
-				m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				if (y != radiusLength)
-				{
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
-					m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
-				}
-			}
-		}
+        int x, y;
+        double radius, value;
+        double pi = 3.1415926f;
+        m_core_matrix[(radiusLength + 1) * (2 * radiusLength + 1) - radiusLength] = 1.0f;
+        for (y = 0; y <= radiusLength; ++y)
+        {
+            for (x = 0; x <= radiusLength; ++x)
+            {
+                radius = pow((radiusLength + 0.0f - x), 2.0f) + pow((radiusLength + 0.0f - y), 2.0f);
+                value = (1.0f / (integrity * sqrt(2 * pi))) * exp(-pow(radius, 2.0f) / (2 * integrity * integrity));
+                m_core_matrix[y * (2 * radiusLength + 1) + x] = value;
+                m_core_matrix[y * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                if (y != radiusLength)
+                {
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + x] = value;
+                    m_core_matrix[(2 * radiusLength - y) * (2 * radiusLength + 1) + 2 * radiusLength - x] = value;
+                }
+            }
+        }
 
-		double m_core_sum = 0.0f;
-		for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
-		{
-			m_core_sum += m_core_matrix[id];
-		}
+        double m_core_sum = 0.0f;
+        for (int id = 0; id < (2 * radiusLength + 1) * (2 * radiusLength + 1); ++id)
+        {
+            m_core_sum += m_core_matrix[id];
+        }
 
-		// Normalize Matrix
-		for (int y = 0; y < (2 * radiusLength + 1); ++y)
-		{
-			for (int x = 0; x < (2 * radiusLength + 1); ++x)
-			{
-				m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
-			}
-		}
+        // Normalize Matrix
+        for (int y = 0; y < (2 * radiusLength + 1); ++y)
+        {
+            for (int x = 0; x < (2 * radiusLength + 1); ++x)
+            {
+                m_core_matrix[y * (radiusLength * 2 + 1) + x] /= m_core_sum;
+            }
+        }
 
-		// Act on convolution calculate use core
-		int average_red, average_green, average_blue, average_alpha;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				int cx, cy, tx, ty;
-				double vRed, vGreen, vBlue, vAlpha;
-				double coreVal, value;
-				int pixelPosition = 0;
-				value = 0.8f;
-				coreVal = 1.0f;
-				vRed = 0.0f;
-				vGreen = 0.0f;
-				vBlue = 0.0f;
-				vAlpha = 0.0f;
-				for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
-				{
-					for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
-					{
-						tx = x + cx - radiusLength;
-						ty = y + cy - radiusLength;
-						if ((0 > tx) || (0 > ty))
-						{
-							continue;
-						}
-						if ((m_width <= tx) || (m_height <= ty))
-						{
-							continue;
-						}
-						coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
-						pixelPosition = (ty * m_width + tx) * m_depth;
-						vBlue += coreVal * m_source_image[pixelPosition + 2];
-					}
-				}
+        // Act on convolution calculate use core
+        int average_red, average_green, average_blue, average_alpha;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                int cx, cy, tx, ty;
+                double vRed, vGreen, vBlue, vAlpha;
+                double coreVal, value;
+                int pixelPosition = 0;
+                value = 0.8f;
+                coreVal = 1.0f;
+                vRed = 0.0f;
+                vGreen = 0.0f;
+                vBlue = 0.0f;
+                vAlpha = 0.0f;
+                for (cy = 0; cy < (2 * radiusLength + 1); ++cy)
+                {
+                    for (cx = 0; cx < (2 * radiusLength + 1); ++cx)
+                    {
+                        tx = x + cx - radiusLength;
+                        ty = y + cy - radiusLength;
+                        if ((0 > tx) || (0 > ty))
+                        {
+                            continue;
+                        }
+                        if ((m_width <= tx) || (m_height <= ty))
+                        {
+                            continue;
+                        }
+                        coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
+                        pixelPosition = (ty * m_width + tx) * m_depth;
+                        vBlue += coreVal * m_source_image[pixelPosition + 2];
+                    }
+                }
 
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 2] = (unsigned char)vBlue;
-			}
-		}
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 2] = (unsigned char)vBlue;
+            }
+        }
 
-		STBI_FREE(m_core_matrix);
-		STBI_FREE(m_source_image);
-		return true;
-	}
+        STBI_FREE(m_core_matrix);
+        STBI_FREE(m_source_image);
+        return true;
+    }
 
-	/** 
-	* transform into gray color
-	* that is R = G = B = Gray
-	* way1: use Gray = (R*38 + G*75 + B*15) >> 7
-	* way2: use Gray = (R*30 + G*59 + B*11 + 50) / 100
-	* way3: use Gray = R*0.299 + G*0.587 + B*0.114
-	*/
-	bool transformToGray()
-	{
-		if (!this->isInitized())
-		{
-			return false;
-		}
+    /** 
+    * transform into gray color
+    * that is R = G = B = Gray
+    * way1: use Gray = (R*38 + G*75 + B*15) >> 7
+    * way2: use Gray = (R*30 + G*59 + B*11 + 50) / 100
+    * way3: use Gray = R*0.299 + G*0.587 + B*0.114
+    */
+    bool transformToGray()
+    {
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		float grayVal;
-		int x, y, pixelPosition;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				pixelPosition = (y * m_width + x) * m_depth;
-				grayVal = m_image_data[pixelPosition + 0] * 0.299;
-				grayVal += m_image_data[pixelPosition + 1] * 0.587;
-				grayVal +=   m_image_data[pixelPosition + 2] * 0.114;
-				m_image_data[pixelPosition + 0] = (unsigned char) grayVal;
-				m_image_data[pixelPosition + 1] = (unsigned char) grayVal;
-				m_image_data[pixelPosition + 2] = (unsigned char) grayVal;
-			}
-		}
+        float grayVal;
+        int x, y, pixelPosition;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                pixelPosition = (y * m_width + x) * m_depth;
+                grayVal = m_image_data[pixelPosition + 0] * 0.299;
+                grayVal += m_image_data[pixelPosition + 1] * 0.587;
+                grayVal +=   m_image_data[pixelPosition + 2] * 0.114;
+                m_image_data[pixelPosition + 0] = (unsigned char) grayVal;
+                m_image_data[pixelPosition + 1] = (unsigned char) grayVal;
+                m_image_data[pixelPosition + 2] = (unsigned char) grayVal;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/*
-	* decay R/G/B with decayCoeff
-	*/
-	bool decayColor(float decayCoeff)
-	{
-		if (!this->isInitized())
-		{
-			return false;
-		}
+    /*
+    * decay R/G/B with decayCoeff
+    */
+    bool decayColor(float decayCoeff)
+    {
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		if ((0.0f > decayCoeff) || (1.0f <= decayCoeff))
-		{
-			return false;
-		}
+        if ((0.0f > decayCoeff) || (1.0f <= decayCoeff))
+        {
+            return false;
+        }
 
-		int x, y, pixelPosition;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 0] *= decayCoeff;
-				m_image_data[pixelPosition + 1] *= decayCoeff;
-				m_image_data[pixelPosition + 2] *= decayCoeff;
-			}
-		}
+        int x, y, pixelPosition;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 0] *= decayCoeff;
+                m_image_data[pixelPosition + 1] *= decayCoeff;
+                m_image_data[pixelPosition + 2] *= decayCoeff;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/*
-	* decay R/G/B with coeffRed, coeffGreen, coeffBlue
-	*/
-	bool decayRGB(float coeffRed, float coeffGreen, float coeffBlue)
-	{
-		if (!this->isInitized())
-		{
-			return false;
-		}
+    /*
+    * decay R/G/B with coeffRed, coeffGreen, coeffBlue
+    */
+    bool decayRGB(float coeffRed, float coeffGreen, float coeffBlue)
+    {
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		if (0.0f > coeffRed)
-		{
-			return false;
-		}
+        if (0.0f > coeffRed)
+        {
+            return false;
+        }
 
-		if (0.0f > coeffGreen)
-		{
-			return false;
-		}
+        if (0.0f > coeffGreen)
+        {
+            return false;
+        }
 
-		if (0.0f > coeffBlue)
-		{
-			return false;
-		}
+        if (0.0f > coeffBlue)
+        {
+            return false;
+        }
 
-		int x, y, pixelPosition;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 0] *= coeffRed;
-				m_image_data[pixelPosition + 1] *= coeffGreen;
-				m_image_data[pixelPosition + 2] *= coeffBlue;
-			}
-		}
+        int x, y, pixelPosition;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 0] *= coeffRed;
+                m_image_data[pixelPosition + 1] *= coeffGreen;
+                m_image_data[pixelPosition + 2] *= coeffBlue;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/*
-	* transform image to {0x00 | 0xFF} mode with given threshold
-	* alpha channel will be ignored for keep transparency
-	* Range: val < threshold = 0x00; val >= threshold = 0xFF
-	*/
-	bool binaryTransform(int redThreshold, int greenThreshold, int blueThreshold)
-	{
-		if (!this->isInitized())
-		{
-			return false;
-		}
+    /*
+    * transform image to {0x00 | 0xFF} mode with given threshold
+    * alpha channel will be ignored for keep transparency
+    * Range: val < threshold = 0x00; val >= threshold = 0xFF
+    */
+    bool binaryTransform(int redThreshold, int greenThreshold, int blueThreshold)
+    {
+        if (!this->isInitized())
+        {
+            return false;
+        }
 
-		if ((0x00 > redThreshold) || (0xFF < redThreshold))
-		{
-			return false;
-		}
+        if ((0x00 > redThreshold) || (0xFF < redThreshold))
+        {
+            return false;
+        }
 
-		if ((0x00 > greenThreshold) || (0xFF < greenThreshold))
-		{
-			return false;
-		}
+        if ((0x00 > greenThreshold) || (0xFF < greenThreshold))
+        {
+            return false;
+        }
 
-		if ((0x00 > blueThreshold) || (0xFF < blueThreshold))
-		{
-			return false;
-		}
-		
-		int x, y, pixelPosition;
-		for (y = 0; y < m_height; ++y)
-		{
-			for (x = 0; x < m_width; ++x)
-			{
-				pixelPosition = (y * m_width + x) * m_depth;
-				m_image_data[pixelPosition + 0] = (m_image_data[pixelPosition + 0] > redThreshold) ? 0x00 : 0xFF;
-				m_image_data[pixelPosition + 1] = (m_image_data[pixelPosition + 1] > greenThreshold) ? 0x00 : 0xFF;
-				m_image_data[pixelPosition + 2] = (m_image_data[pixelPosition + 2] > blueThreshold) ? 0x00 : 0xFF;
-			}
-		}
+        if ((0x00 > blueThreshold) || (0xFF < blueThreshold))
+        {
+            return false;
+        }
+        
+        int x, y, pixelPosition;
+        for (y = 0; y < m_height; ++y)
+        {
+            for (x = 0; x < m_width; ++x)
+            {
+                pixelPosition = (y * m_width + x) * m_depth;
+                m_image_data[pixelPosition + 0] = (m_image_data[pixelPosition + 0] > redThreshold) ? 0x00 : 0xFF;
+                m_image_data[pixelPosition + 1] = (m_image_data[pixelPosition + 1] > greenThreshold) ? 0x00 : 0xFF;
+                m_image_data[pixelPosition + 2] = (m_image_data[pixelPosition + 2] > blueThreshold) ? 0x00 : 0xFF;
+            }
+        }
 
-		return true;
-	}
+        return true;
+    }
 
 private:
     bool verifyNonNegativeColorParams(int red, int green, int blue, int alpha)
@@ -1206,69 +1206,69 @@ int main()
     //{
     //    printf("Object Gaussian blur success\n");
     //}
-	
-	if (false == imageObj.transformToGray())
-	{
-		printf("Object transform to gray failed!\n");
-	}
-	else
-	{
-		printf("Object transform to gray success\n");
-	}
+    
+    if (false == imageObj.transformToGray())
+    {
+        printf("Object transform to gray failed!\n");
+    }
+    else
+    {
+        printf("Object transform to gray success\n");
+    }
 
-	if (false == imageObj.binaryTransform(0x80, 0x80, 0x80))
-	{
-		printf("Object binary transform failed!\n");
-	}
-	else
-	{
-		printf("Object binary transform success\n");
-	}
+    if (false == imageObj.binaryTransform(0x80, 0x80, 0x80))
+    {
+        printf("Object binary transform failed!\n");
+    }
+    else
+    {
+        printf("Object binary transform success\n");
+    }
 
-	//if (false == imageObj.decayColor(0.80f))
-	//{
-	//	printf("Object decay color failed!\n");
-	//}
-	//else
-	//{
-	//	printf("Object decay color  success\n");
-	//}
+    //if (false == imageObj.decayColor(0.80f))
+    //{
+    //    printf("Object decay color failed!\n");
+    //}
+    //else
+    //{
+    //    printf("Object decay color  success\n");
+    //}
 
-	//if (false == imageObj.decayRGB(0.3f, 0.9f, 0.6f))
-	//{
-	//	printf("Object decay RGB color failed!\n");
-	//}
-	//else
-	//{
-	//	printf("Object decay RGB color  success\n");
-	//}
+    //if (false == imageObj.decayRGB(0.3f, 0.9f, 0.6f))
+    //{
+    //    printf("Object decay RGB color failed!\n");
+    //}
+    //else
+    //{
+    //    printf("Object decay RGB color  success\n");
+    //}
 
-	//if (false == imageObj.gaussianRedBlur(10, 10.0f))
-	//{
-	//    printf("Object Gaussian blur failed!\n");
-	//}
-	//else
-	//{
-	//    printf("Object Gaussian blur success\n");
-	//}
+    //if (false == imageObj.gaussianRedBlur(10, 10.0f))
+    //{
+    //    printf("Object Gaussian blur failed!\n");
+    //}
+    //else
+    //{
+    //    printf("Object Gaussian blur success\n");
+    //}
 
-	//if (false == imageObj.gaussianGreenBlur(10, 10.0f))
-	//{
-	//    printf("Object Gaussian blur failed!\n");
-	//}
-	//else
-	//{
-	//    printf("Object Gaussian blur success\n");
-	//}
+    //if (false == imageObj.gaussianGreenBlur(10, 10.0f))
+    //{
+    //    printf("Object Gaussian blur failed!\n");
+    //}
+    //else
+    //{
+    //    printf("Object Gaussian blur success\n");
+    //}
 
-	//if (false == imageObj.gaussianBlueBlur(10, 10.0f))
-	//{
-	//    printf("Object Gaussian blur failed!\n");
-	//}
-	//else
-	//{
-	//    printf("Object Gaussian blur success\n");
-	//}
+    //if (false == imageObj.gaussianBlueBlur(10, 10.0f))
+    //{
+    //    printf("Object Gaussian blur failed!\n");
+    //}
+    //else
+    //{
+    //    printf("Object Gaussian blur success\n");
+    //}
 
     //if (false == imageObj.setAlpha(150))
     //{
