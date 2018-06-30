@@ -158,7 +158,7 @@ public:
         {
             for (int x = 0; x < m_width; ++x)
             {
-				pixelPosition = y * m_width * m_depth + x * m_depth;
+		        pixelPosition = y * m_width * m_depth + x * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -191,9 +191,9 @@ public:
         int rx, gx, bx, ax, pixelPosition;
         for (int y_id = y; y_id < (y + height); ++y_id)
         {
-			for (int x_id = x; x_id < (x + width); ++x_id)
-			{
-				pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
+	        for (int x_id = x; x_id < (x + width); ++x_id)
+	        {
+	            pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -223,7 +223,7 @@ public:
         {
             for (int y_id = 0; y_id < m_height; ++y_id)
             {
-				pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
+	            pixelPosition = y_id * m_width * m_depth + x_id * m_depth;
                 rx = pixelPosition + 0;
                 gx = pixelPosition + 1;
                 bx = pixelPosition + 2;
@@ -253,11 +253,11 @@ public:
             return false;
         }
 
-		int arr_id;
-		for (arr_id = 3; arr_id < m_width * m_height * m_depth; arr_id += m_depth)
-		{
-			m_image_data[arr_id] = alpha;
-		}
+	int arr_id;
+	for (arr_id = 3; arr_id < m_width * m_height * m_depth; arr_id += m_depth)
+	{
+		m_image_data[arr_id] = alpha;
+	}
 
         return true;
     }
@@ -311,7 +311,7 @@ public:
                     {
                         break;
                     }
-					pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
+		            pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
                     average_red += m_source_image[pixelPosition + 0];
                     average_green += m_source_image[pixelPosition + 1];
                     average_blue += m_source_image[pixelPosition + 2];
@@ -335,7 +335,7 @@ public:
                     {
                         break;
                     }
-					pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
+		            pixelPosition = (yh + y) * m_width * m_depth + x * m_depth;
                     m_image_data[pixelPosition + 0] = average_red;
                     m_image_data[pixelPosition + 1] = average_green;
                     m_image_data[pixelPosition + 2] = average_blue;
@@ -401,7 +401,7 @@ public:
                     {
                         break;
                     }
-					pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
+		            pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
                     average_red += m_source_image[pixelPosition + 0];
                     average_green += m_source_image[pixelPosition + 1];
                     average_blue += m_source_image[pixelPosition + 2];
@@ -426,7 +426,7 @@ public:
                     {
                         break;
                     }
-					pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
+		            pixelPosition = y * m_width * m_depth + (x + xh) * m_depth;
                     m_image_data[pixelPosition + 0] = average_red;
                     m_image_data[pixelPosition + 1] = average_green;
                     m_image_data[pixelPosition + 2] = average_blue;
@@ -550,7 +550,7 @@ public:
                             continue;
                         }
                         coreVal = m_core_matrix[cy * (2 * radiusLength + 1) + cx];
-						pixelPosition = (ty * m_width + tx) * m_depth;
+		                pixelPosition = (ty * m_width + tx) * m_depth;
                         vRed += coreVal * m_source_image[pixelPosition + 0];
                         vGreen += coreVal * m_source_image[pixelPosition + 1];
                         vBlue += coreVal * m_source_image[pixelPosition + 2];
@@ -561,7 +561,7 @@ public:
                     }
                 }
 
-				pixelPosition = (y * m_width + x) * m_depth;
+	        pixelPosition = (y * m_width + x) * m_depth;
                 m_image_data[pixelPosition + 0] = (unsigned char) vRed;
                 m_image_data[pixelPosition + 1] = (unsigned char) vGreen;
                 m_image_data[pixelPosition + 2] = (unsigned char) vBlue;
